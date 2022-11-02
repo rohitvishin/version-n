@@ -51,27 +51,27 @@
                         <div class="row">
                             <div class="col-md-3">
                                 <label>Product Name</label>
-                                <input type="text" class="form-control" name="p_name" placeholder="Product name">  
+                                <input type="text" class="form-control" name="p_name[]" placeholder="Product name">  
                             </div>
                             <div class="col-md-2">
                                 <label>Price</label>
-                                <input type="text" class="form-control" name="price" placeholder="Enter price">
+                                <input type="text" class="form-control" name="price[]" placeholder="Enter price">
                             </div>
                             <div class="col-md-2">
                                 <label>Quantity</label>
-                                <input type="text" class="form-control" name="qty" placeholder="Enter quantity">
+                                <input type="text" class="form-control" name="qty[]" placeholder="Enter quantity">
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-3 type">
                                 <label>Product Type</label>
-                                <select class="form-control">
+                                <select class="form-control" name="type[]">
                                     <option>Choose</option>
                                     <option value="flat">flat</option>
                                     <option value="discount">discount</option>
                                 </select>
                             </div>
-                            <div class="col-md-2">
+                            <div class="col-md-2 discount" id="discount" style="display:none;">
                                 <label>Discount</label>
-                                <input type="text" name="discount" class="form-control" placeholder="Enter Amount">
+                                <input type="text" name="discount[]" class="form-control" placeholder="Enter Amount">
                             </div>
                         </div><br/>
                     </div>
@@ -82,9 +82,11 @@
         </div>
     </body>
     <script type="text/javascript">
- 
         $("#rowAdder").click(function () {
             $('#product_box').append($('#product_form').html());
         });
+        $('.type').change(function(){
+            $(this).next('div').show();
+        })
     </script>
 </html>
