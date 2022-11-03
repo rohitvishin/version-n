@@ -56,11 +56,11 @@
                             </div>
                             <div class="col-md-2">
                                 <label>Price</label>
-                                <input type="text" class="form-control" name="price[]" placeholder="Enter price">
+                                <input type="text" class="form-control price" onChange="calculator(this)" name="price[]" placeholder="Enter price">
                             </div>
                             <div class="col-md-2">
                                 <label>Quantity</label>
-                                <input type="text" class="form-control" name="qty[]" placeholder="Enter quantity">
+                                <input type="text" class="form-control qty" onChange="calculator(this)" name="qty[]" placeholder="Enter quantity">
                             </div>
                             <div class="col-md-3">
                                 <label>Product Type</label>
@@ -72,30 +72,23 @@
                             </div> 
                             <div class="col-md-2 discount d-none">
                                 <label>Discount</label>
-                                <input type="text" name="discount[]" class="form-control" placeholder="Enter Amount">
+                                <input type="text" name="discount[]" onChange="calculator(this)" class="form-control disc" placeholder="Enter Amount">
                             </div>
                         </div><br/>
                     </div>
                 </div><br/>
+                <div class="row">
+                <div class="col-md-4">
                 <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+                <div class="col-md-4"></div>
+                <div class="col-md-4">
+                <p>Total Amount : <input type="text" class="form-control" id="f_total" name="f_total" disabled></p>
+                </div>
+                </div>
             </form>
             </div>
         </div>
     </body>
-    <script type="text/javascript">
-        $("#rowAdder").click(function () {
-            var element= '<div class="row"><div class="col-md-3"><label>Product Name</label><input type="text" class="form-control" name="p_name[]" placeholder="Product name"></div><div class="col-md-2"><label>Price</label><input type="text" class="form-control" name="price[]" placeholder="Enter price"></div><div class="col-md-2"><label>Quantity</label><input type="text" class="form-control" name="qty[]" placeholder="Enter quantity"></div><div class="col-md-3"><label>Product Type</label><select class="form-control type" onChange="showTextbox(this)" name="type[]"><option>Choose</option><option value="flat">flat</option><option value="discount">discount</option></select></div><div class="col-md-2 discount d-none"><label>Discount</label><input type="text" name="discount[]" class="form-control" placeholder="Enter Amount"></div></div><br/>';
-            $('#product_box').append(element);
-        });
-
-        function showTextbox(e){
-            var name = $(e).val();
-            if($(e).val() == 'discount'){
-                $(e).parent().next().removeClass('d-none');
-            }else{
-                $(e).parent().next().addClass('d-none');
-            }
-        }
-
-    </script>
+    <script src="{{asset('assets/calculator.js')}}"></script>
 </html>
