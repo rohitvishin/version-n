@@ -15,6 +15,3 @@ use App\Http\Controllers\Controller;
 
 Route::view('/','form');
 Route::post('/addProduct',[Controller::class,'addProducts']);
-// Route::get('/addProduct',function(){
-//     return "in";
-// });
