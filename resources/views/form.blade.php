@@ -6,7 +6,8 @@
     <body>
         <div class="container">
             <div class="row">
-                <form>
+                <form method="POST" action="{{url('/addProduct')}}">
+                    @csrf
                 <div class="col-md-12">
                 {{-- user form section --}}
                     <h2>User Details</h2>
@@ -45,7 +46,7 @@
                 <div class="row">
                     <div class="col-md-10"><h2>Product Details</h2></div><div class="col-md-2" align='right'><button type="button" class="btn btn-primary" id="rowAdder">Add</button></div>
                 </div>
-                <hr/>
+                <hr/>                
                 <div id="product_box">
                     <div id="product_form">
                         <div class="row">
@@ -61,15 +62,15 @@
                                 <label>Quantity</label>
                                 <input type="text" class="form-control" name="qty[]" placeholder="Enter quantity">
                             </div>
-                            <div class="col-md-3 type">
+                            <div class="col-md-3">
                                 <label>Product Type</label>
-                                <select class="form-control" name="type[]">
+                                <select class="form-control type" onChange="showTextbox(this)" name="type[]">
                                     <option>Choose</option>
                                     <option value="flat">flat</option>
                                     <option value="discount">discount</option>
                                 </select>
-                            </div>
-                            <div class="col-md-2 discount" id="discount" style="display:none;">
+                            </div> 
+                            <div class="col-md-2 discount d-none">
                                 <label>Discount</label>
                                 <input type="text" name="discount[]" class="form-control" placeholder="Enter Amount">
                             </div>
@@ -83,10 +84,18 @@
     </body>
     <script type="text/javascript">
         $("#rowAdder").click(function () {
-            $('#product_box').append($('#product_form').html());
+            var element= '<div class="row"><div class="col-md-3"><label>Product Name</label><input type="text" class="form-control" name="p_name[]" placeholder="Product name"></div><div class="col-md-2"><label>Price</label><input type="text" class="form-control" name="price[]" placeholder="Enter price"></div><div class="col-md-2"><label>Quantity</label><input type="text" class="form-control" name="qty[]" placeholder="Enter quantity"></div><div class="col-md-3"><label>Product Type</label><select class="form-control type" onChange="showTextbox(this)" name="type[]"><option>Choose</option><option value="flat">flat</option><option value="discount">discount</option></select></div><div class="col-md-2 discount d-none"><label>Discount</label><input type="text" name="discount[]" class="form-control" placeholder="Enter Amount"></div></div><br/>';
+            $('#product_box').append(element);
         });
-        $('.type').change(function(){
-            $(this).next('div').show();
-        })
+
+        function showTextbox(e){
+            var name = $(e).val();
+            if($(e).val() == 'discount'){
+                $(e).parent().next().removeClass('d-none');
+            }else{
+                $(e).parent().next().addClass('d-none');
+            }
+        }
+
     </script>
 </html>

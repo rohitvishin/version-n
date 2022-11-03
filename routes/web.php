@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\Controller;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,3 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::view('/','form');
+Route::post('/addProduct',[Controller::class,'addProducts']);
+// Route::get('/addProduct',function(){
+//     return "in";
+// });
