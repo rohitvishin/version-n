@@ -2,9 +2,10 @@
     <head>
         <link rel="stylesheet" href="{{asset('assets/bootstrap.min.css')}}">
         <script src="{{asset('assets/jquery.js')}}"></script>
+          
     </head>
     <body>
-        <div class="container">
+        <div class="container" style="background-color: whitesmoke;">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
