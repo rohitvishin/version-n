@@ -19,8 +19,7 @@ class Controller extends BaseController
             'username' => 'required|string',
             'email' => 'required|string|email',
             'phone' => 'required|string',
-            'password' => 'required|string',
-            'c_password' => 'required|same:password'
+            'password' => 'required|string'
         ]);
         $user = new User([
             'name' => $request->name,
@@ -39,9 +38,30 @@ class Controller extends BaseController
                     'product_type' => $request->type[$key],
                     'product_discount' => $request->discount[$key]==''?0:$request->discount[$key],
                 ]);
-                $product->save();
+                if($product->save())
+                return redirect()->back()->with('success','Data Inserted Successfully');
             }
         }
+        return redirect()->back()->with('error','Operation Failed');
+    }
+
+    public function data(){
+        $data=User::all();
+        return view('data',['data'=>$data]);
+    }
+    public function modal(Request $request){
+        $products=Product::where('username', $request->username)->get();
+        $html='';
+        foreach($products as $product){
+            $html.='<tr>
+            <td>'.$product->product_name.'</td>
+            <td>'.$product->product_price.'</td>
+            <td>'.$product->product_qty.'</td>
+            <td>'.$product->product_type.'</td>
+            <td>'.$product->product_discount.'</td>
+            </tr>';
+        }
+        return $html;
     }
 
 }

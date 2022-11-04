@@ -13,5 +13,10 @@ use App\Http\Controllers\Controller;
 |
 */
 
-Route::view('/','form');
+Route::view('/','form')->name("home");
 Route::post('/addProduct',[Controller::class,'addProducts']);
+Route::get('/data',[Controller::class,'data']);
+Route::get('/test',function(){
+    dd(session());
+});
+Route::post('/modal',[Controller::class,'modal']);

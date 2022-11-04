@@ -5,46 +5,55 @@
     </head>
     <body>
         <div class="container">
-            <div class="row">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="{{url('/')}}"><h5>Add Form</h5></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{url('/data')}}"><h5>View Form</h5></a>
+                </li>
+                </ul>
+        </div>
+        </nav>
+            <div class="row" style="margin-top:25px">
                 <form method="POST" action="{{url('/addProduct')}}">
                     @csrf
                 <div class="col-md-12">
                 {{-- user form section --}}
-                    <h2>User Details</h2>
+                    <h5>User Details</h5>
                 <hr/>
                     <div class="row">
                         <div class="col-md-4">
                             <label>Name</label>
-                            <input type="text" class="form-control" name="name" placeholder="Enter name">  
+                            <input type="text" class="form-control" name="name" placeholder="Enter name" required>  
                         </div>
                         <div class="col-md-4">
                             <label>Email</label>
-                            <input type="email" class="form-control" name="email" placeholder="Enter email">
+                            <input type="email" class="form-control" name="email" placeholder="Enter email" required>
                         </div>
                         <div class="col-md-4">
                             <label>Phone number</label>
-                            <input type="text" class="form-control" name="phone" placeholder="Enter phone number">
+                            <input type="text" class="form-control" name="phone" placeholder="Enter phone number" required>
                         </div>
                     </div><br>
                     <div class="row">
                         <div class="col-md-4">
                             <label>Username</label>
-                            <input type="text" class="form-control" name="username" placeholder="Enter username"> 
+                            <input type="text" class="form-control" name="username" placeholder="Enter username" required> 
                         </div>
                         <div class="col-md-4">
                             <label>Password</label>
-                            <input type="password" class="form-control" name="password" placeholder="Enter password">
+                            <input type="password" class="form-control" name="password" placeholder="Enter password" required>
                         </div>
-                        <div class="col-md-4">
-                            <label>Confirm Password</label>
-                            <input type="password" class="form-control" name="c_password" placeholder="Please confirm password">
-                        </div>                 
+                                    
                     </div>
                 </div><br/>
 
                 {{-- product section --}}
                 <div class="row">
-                    <div class="col-md-10"><h2>Product Details</h2></div><div class="col-md-2" align='right'><button type="button" class="btn btn-primary" id="rowAdder">Add</button></div>
+                    <div class="col-md-10"><h5>Product Details</h5></div><div class="col-md-2" align='right'><button type="button" class="btn btn-primary" id="rowAdder">Add</button></div>
                 </div>
                 <hr/>                
                 <div id="product_box">
@@ -52,20 +61,20 @@
                         <div class="row">
                             <div class="col-md-3">
                                 <label>Product Name</label>
-                                <input type="text" class="form-control" name="p_name[]" placeholder="Product name">  
+                                <input type="text" class="form-control" name="p_name[]" placeholder="Product name" required>  
                             </div>
                             <div class="col-md-2">
                                 <label>Price</label>
-                                <input type="text" class="form-control price" onChange="calculator(this)" name="price[]" placeholder="Enter price">
+                                <input type="text" class="form-control price" onChange="calculator(this)" name="price[]" placeholder="Enter price" required>
                             </div>
                             <div class="col-md-2">
                                 <label>Quantity</label>
-                                <input type="text" class="form-control qty" onChange="calculator(this)" name="qty[]" placeholder="Enter quantity">
+                                <input type="text" class="form-control qty" onChange="calculator(this)" name="qty[]" placeholder="Enter quantity" required>
                             </div>
                             <div class="col-md-3">
                                 <label>Product Type</label>
-                                <select class="form-control type" onChange="showTextbox(this)" name="type[]">
-                                    <option>Choose</option>
+                                <select class="form-control type" onChange="showTextbox(this)" name="type[]" required>
+                                    <option value="">Choose</option>
                                     <option value="flat">flat</option>
                                     <option value="discount">discount</option>
                                 </select>
@@ -77,6 +86,16 @@
                         </div><br/>
                     </div>
                 </div><br/>
+                    @if(Session::has('success'))
+                        <h5>
+                            {{Session::get('success')}}
+                        </h5>
+                    @endif
+                    @if(Session::has('error'))
+                        <h5>
+                            {{Session::get('error')}}
+                        </h5>
+                    @endif
                 <div class="row">
                 <div class="col-md-4">
                 <button type="submit" class="btn btn-primary">Submit</button>
