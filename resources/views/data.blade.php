@@ -2,6 +2,13 @@
     <head>
         <link rel="stylesheet" href="{{asset('assets/bootstrap.min.css')}}">
         <script src="{{asset('assets/jquery.js')}}"></script>
+        <link rel="stylesheet" href=
+"https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css">
+  
+    <!-- DataTables JS -->
+    <script src=
+"https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js">
+    </script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"></script>
         <script src="{{asset('assets/axios.min.js')}}"></script>
     </head>
@@ -20,7 +27,7 @@
         </div>
         </nav>
             <div class="row" style="margin-top:25px">
-                <table class="table table-bordered">
+                <table class="table table-bordered display" id="tableID">
                 <thead>
                     <tr>
                     <th scope="col">Username</th>
@@ -67,6 +74,18 @@
             </div>
         </div>
     </body>
+    <script>
+  
+        // Initialize the DataTable
+        $(document).ready(function () {
+            $('#tableID').DataTable({
+  
+                // Enable the searching
+                // of the DataTable
+                searching: true
+            });
+        });
+    </script>
     <script>
         var url="{{url('')}}";
         $('.myModal').on('click', function () {
